@@ -48,14 +48,19 @@ public class UserServiceImpl implements UserService {
         return userDao.getUserByName(name);
     }
 
+    public User findUserById(Long id) {
+        return userDao.getById(id);
+
+    }
+
     @Transactional
     @Override
     public void init() {
         Role adminRole = new Role("ROLE_ADMIN");
         Role userRole = new Role("ROLE_USER");
         roleService.saveAll(Set.of(adminRole, userRole));
-        save(new User("Ivan", "Ivanov", "100", Set.of(adminRole)));
-        save(new User("Petr", "Petrov", "200", Set.of(userRole)));
-        save(new User("Alexander", "Alexandrov", "300", Set.of(userRole)));
+        save(new User("Ivan", "Ivanov", "100", "ivan@mail.ru", 30, Set.of(adminRole)));
+        save(new User("Petr", "Petrov", "200", "petr@mail.ru", 24, Set.of(userRole)));
+        save(new User("Alexander", "Alexandrov", "300","alex@mail.ru" , 41, Set.of(userRole)));
     }
 }

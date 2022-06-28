@@ -59,8 +59,8 @@ public class UserServiceImpl implements UserService {
         Role adminRole = new Role("ROLE_ADMIN");
         Role userRole = new Role("ROLE_USER");
         roleService.saveAll(Set.of(adminRole, userRole));
-        save(new User("Ivan", "Ivanov", "100", "ivan@mail.ru", 30, Set.of(adminRole)));
-        save(new User("Petr", "Petrov", "200", "petr@mail.ru", 24, Set.of(userRole)));
-        save(new User("Alexander", "Alexandrov", "300","alex@mail.ru" , 41, Set.of(userRole)));
+        save(new User("Ivan", "Ivanov", "$2a$12$LMOOIaBmkO1sdZaSKi41UOITeouymo6e.AiGIU28Al7r1bTv07NZK", "ivan@mail.ru", 30, Set.of(adminRole)));
+        save(new User("Petr", "Petrov", "$2a$12$VtcyCvBgkrxqxCMpQY.O/eeoJoX9O3nPo1VFo50geQk5zUISXycFe", "petr@mail.ru", 24, Set.of(userRole)));
+        save(new User("Alexander", "Alexandrov", "$2a$12$G2bAwW0TX/Yh2Fm6deLZkO/HLPGBrl1fcIX6Q6jtfFPyETu.ai7UC","alex@mail.ru" , 41, Set.of(userRole)));
     }
 }

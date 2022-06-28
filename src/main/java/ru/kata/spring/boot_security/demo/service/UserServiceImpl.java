@@ -1,55 +1,52 @@
 package ru.kata.spring.boot_security.demo.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.kata.spring.boot_security.demo.dao.UserDAO;
+import ru.kata.spring.boot_security.demo.repositories.UserRepository;
 import ru.kata.spring.boot_security.demo.model.Role;
 import ru.kata.spring.boot_security.demo.model.User;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Set;
 
 @Service
 public class UserServiceImpl implements UserService {
-    private final UserDAO userDao;
+    private final UserRepository userRepository;
     private final RoleService roleService;
 
-    public UserServiceImpl(UserDAO userDao, RoleService roleService) {
-        this.userDao = userDao;
+    public UserServiceImpl(UserRepository userDao, RoleService roleService) {
+        this.userRepository = userDao;
         this.roleService = roleService;
     }
 
     @Transactional
     @Override
     public void save(User user) {
-        userDao.save(user);
+        userRepository.save(user);
     }
 
     @Transactional
     @Override
     public void delete(User user) {
-        userDao.delete(user);
+        userRepository.delete(user);
     }
 
     @Override
     public User getId(Long id) {
-        return userDao.getById(id);
+        return userRepository.getById(id);
     }
 
     @Override
     public List<User> findAll() {
-        return (List<User>) userDao.findAll();
+        return (List<User>) userRepository.findAll();
     }
 
     public User findUserByName(String name) {
-        return userDao.getUserByName(name);
+        return userRepository.getUserByName(name);
     }
 
     public User findUserById(Long id) {
-        return userDao.getById(id);
+        return userRepository.getById(id);
 
     }
 

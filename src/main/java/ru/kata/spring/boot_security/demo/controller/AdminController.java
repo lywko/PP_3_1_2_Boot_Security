@@ -38,17 +38,7 @@ public class AdminController {
     }
 
     @PostMapping
-    public String create(@ModelAttribute("User") User user,
-                         @RequestParam(required=false) String roleAdmin,@RequestParam(required=false) String roleUser) {
-        Set<Role> roles = new HashSet<>();
-
-        if (roleAdmin != null && roleAdmin.equals("ROLE_ADMIN")) {
-            roles.add(roleServiceImpl.getRoleByName("ROLE_ADMIN"));
-        }
-        if(roleUser != null && roleUser.equals("ROLE_USER")) {
-            roles.add(roleServiceImpl.getRoleByName("ROLE_USER"));
-        }
-        user.setRoles(roles);
+    public String create(@ModelAttribute("User") User user) {
         userServiceImpl.save(user);
         return "redirect:/admin";
     }
@@ -67,15 +57,7 @@ public class AdminController {
 
 
     @PostMapping("/{id}")
-    public String update(@ModelAttribute("User") User user , @RequestParam(required=false) String roleAdmin,@RequestParam(required=false) String roleUser) {
-        Set<Role> roles = new HashSet<>();
-        if (roleAdmin != null && roleAdmin.equals("ROLE_ADMIN")) {
-            roles.add(roleServiceImpl.getRoleByName("ROLE_ADMIN"));
-        }
-        if(roleUser != null && roleUser.equals("ROLE_USER")) {
-            roles.add(roleServiceImpl.getRoleByName("ROLE_USER"));
-        }
-        user.setRoles(roles);
+    public String update(@ModelAttribute("User") User user) {
         userServiceImpl.save(user);
         return "redirect:/admin";
     }

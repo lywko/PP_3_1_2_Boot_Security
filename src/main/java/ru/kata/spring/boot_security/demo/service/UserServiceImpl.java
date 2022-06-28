@@ -14,8 +14,8 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final RoleService roleService;
 
-    public UserServiceImpl(UserRepository userDao, RoleService roleService) {
-        this.userRepository = userDao;
+    public UserServiceImpl(UserRepository userRepository, RoleService roleService) {
+        this.userRepository = userRepository;
         this.roleService = roleService;
     }
 
